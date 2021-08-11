@@ -1,0 +1,9 @@
+<library path="lib/librviz_cr5control">
+    <class name="rviz_cr5control/CR5Control"
+           type="rviz_cr5control::CR5Control"
+           base_class_type="rviz::Panel">
+        <description>
+            CR5Robot simple control
+        </description>
+    </class>
+</library>
