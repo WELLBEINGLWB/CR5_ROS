@@ -6,7 +6,7 @@
 ```
 cd $HOME/catkin_ws/src
 
-git clone -b kinetic-devel https://github.com/ros-industrial/universal_robot.git
+git clone "git url" -b kinetic-devel
 
 cd $HOME/catkin_ws
 
@@ -19,7 +19,19 @@ source $HOME/catkin_ws/devel/setup.bash
 
 ## ubuntu18.04
 
-    适配中, 暂不支持
+    ```
+cd $HOME/catkin_ws/src
+
+git clone "git url" -b melodic-devel
+
+cd $HOME/catkin_ws
+
+# building
+catkin_make
+
+# activate this workspace
+source $HOME/catkin_ws/devel/setup.bash
+```
 
 # 示例演示
 
