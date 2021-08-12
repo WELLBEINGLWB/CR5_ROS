@@ -19,12 +19,13 @@ source $HOME/catkin_ws/devel/setup.bash
 
 ## ubuntu18.04
 
-    ```
+```
 cd $HOME/catkin_ws/src
 
 git clone "git url" -b melodic-devel
 
 cd $HOME/catkin_ws
+'''
 
 # building
 catkin_make
