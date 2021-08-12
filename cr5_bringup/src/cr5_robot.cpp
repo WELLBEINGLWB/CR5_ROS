@@ -27,7 +27,7 @@ CR5Robot::~CR5Robot()
 
 void CR5Robot::init()
 {
-    std::string ip = control_nh_.param<std::string>("robot_ip_address", "192.168.50.178");
+    std::string ip = control_nh_.param<std::string>("robot_ip_address", "192.168.5.1");
 
     commander_ = std::make_shared<CR5Commander>(ip);
     commander_->init();
@@ -75,22 +75,41 @@ void CR5Robot::moveHandle(const ros::TimerEvent& tm,
     if (index_ < trajectory->trajectory.points.size())
     {
         auto point = trajectory->trajectory.points[index_].positions;
+        double tmp[6];
         for (uint32_t i = 0; i < 6; i++)
-            goal_[i] = point[i];
-        commander_->servoJ(goal_[0], goal_[1], goal_[2], goal_[3], goal_[4], goal_[5]);
+        {
+            tmp[i] = point[i] * 180.0 / 3.1415926;
+        }
+
+        commander_->servoJ(tmp[0], tmp[1], tmp[2], tmp[3], tmp[4], tmp[5]);
         index_++;
     }
     else
     {
-        handle.setSucceeded();
-        timer_.stop();
-        movj_timer_.stop();
+#define OFFSET_VAL 0.01
+        double current_joints[6];
+        getJointState(current_joints);
+        if ((current_joints[0] >= goal_[0] - OFFSET_VAL) && (current_joints[0] <= goal_[0] + OFFSET_VAL) &&
+            (current_joints[1] >= goal_[1] - OFFSET_VAL) && (current_joints[1] <= goal_[1] + OFFSET_VAL) &&
+            (current_joints[2] >= goal_[2] - OFFSET_VAL) && (current_joints[2] <= goal_[2] + OFFSET_VAL) &&
+            (current_joints[3] >= goal_[3] - OFFSET_VAL) && (current_joints[3] <= goal_[3] + OFFSET_VAL) &&
+            (current_joints[4] >= goal_[4] - OFFSET_VAL) && (current_joints[4] <= goal_[4] + OFFSET_VAL) &&
+            (current_joints[5] >= goal_[5] - OFFSET_VAL) && (current_joints[5] <= goal_[5] + OFFSET_VAL))
+        {
+            timer_.stop();
+            movj_timer_.stop();
+            handle.setSucceeded();
+        }
     }
 }
 
 void CR5Robot::goalHandle(ActionServer<control_msgs::FollowJointTrajectoryAction>::GoalHandle handle)
 {
     index_ = 0;
+    for (uint32_t i = 0; i < 6; i++)
+    {
+        goal_[i] = handle.getGoal()->trajectory.points[handle.getGoal()->trajectory.points.size() - 1].positions[i];
+    }
     timer_ = control_nh_.createTimer(ros::Duration(1.0), boost::bind(&CR5Robot::feedbackHandle, this, _1, handle));
     movj_timer_ = control_nh_.createTimer(ros::Duration(0.30), boost::bind(&CR5Robot::moveHandle, this, _1, handle));
     timer_.start();
@@ -161,8 +180,7 @@ bool CR5Robot::clearError(cr5_bringup::ClearError::Request& request, cr5_bringup
     }
 }
 
-bool CR5Robot::enableRobot(cr5_bringup::EnableRobot::Request& request,
-                           cr5_bringup::EnableRobot::Response& response)
+bool CR5Robot::enableRobot(cr5_bringup::EnableRobot::Request& request, cr5_bringup::EnableRobot::Response& response)
 {
     try
     {
@@ -192,4 +210,14 @@ bool CR5Robot::disableRobot(cr5_bringup::DisableRobot::Request& request, cr5_bri
         response.res = -1;
         return false;
     }
+}
+
+bool CR5Robot::isEnable() const
+{
+    return commander_->isEnable();
+}
+
+bool CR5Robot::isConnected() const
+{
+    return commander_->isConnected();
 }

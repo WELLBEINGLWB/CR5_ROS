@@ -15,6 +15,7 @@
 #include <rviz/panel.h>
 #include <cr5_bringup/EnableRobot.h>
 #include <cr5_bringup/DisableRobot.h>
+#include <cr5_bringup/RobotStatus.h>
 
 using namespace rviz;
 
@@ -34,14 +35,16 @@ public:
     static constexpr const char* ROBOT_STATUS_TOPIC_KEY = "RobotStatusTopicKey";
 
 private:
+    bool is_enable_;
+    bool is_connected_;
     Ui::ControlMenu *ui;
     ros::NodeHandle nh_;
     QString enable_robot_topic_;
     QString disable_robot_topic_;
     QString robot_status_topic_;
+    ros::Subscriber robot_status_sub_;
     ros::ServiceClient enable_robot_client_;
     ros::ServiceClient disable_robot_client_;
-//    ros::ServiceClient enable_robot_client_;
 
 public Q_SLOTS:
     void enableRobot();
@@ -58,5 +61,14 @@ public:
 
     /** @brief Override to save configuration data.  This version saves the name and class ID of the panel. */
     virtual void save( Config config ) const override;
+
+    /**
+     * listenRobotStatus
+     * @param status robot status
+     */
+    void listenRobotStatus(const cr5_bringup::RobotStatusConstPtr status);
+
+private:
+    void setRobotStatus(bool is_enable, bool is_connected);
 };
 }

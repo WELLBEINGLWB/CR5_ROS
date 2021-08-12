@@ -161,6 +161,16 @@ public:
         }
     }
 
+    bool isEnable() const
+    {
+        return real_time_data_.robot_mode == 5;
+    }
+
+    bool isConnected() const
+    {
+        return dash_board_tcp_->isConnect() && real_time_tcp_->isConnect();
+    }
+
     void enableRobot()
     {
         const char* cmd = "EnableRobot()";
@@ -237,8 +247,7 @@ public:
     void servoJ(double j1, double j2, double j3, double j4, double j5, double j6)
     {
         char cmd[100];
-        sprintf(cmd, "ServoJ(%0.3f,%0.3f,%0.3f,%0.3f,%0.3f,%0.3f)", rad2Deg(j1), rad2Deg(j2), rad2Deg(j3), rad2Deg(j4),
-                rad2Deg(j5), rad2Deg(j6));
+        sprintf(cmd, "ServoJ(%0.3f,%0.3f,%0.3f,%0.3f,%0.3f,%0.3f)", j1, j2, j3, j4, j5, j6);
         real_time_tcp_->tcpSend(cmd, strlen(cmd));
     }
 

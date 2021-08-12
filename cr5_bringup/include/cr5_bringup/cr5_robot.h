@@ -23,11 +23,11 @@
 #include <cr5_bringup/RelMovJ.h>
 #include <cr5_bringup/RelMovL.h>
 #include <cr5_bringup/JointMovJ.h>
+#include <cr5_bringup/RobotStatus.h>
 
 #include <cr5_bringup/ClearError.h>
 #include <cr5_bringup/EnableRobot.h>
 #include <cr5_bringup/DisableRobot.h>
-
 
 using namespace actionlib;
 using namespace control_msgs;
@@ -71,15 +71,26 @@ public:
      */
     void getJointState(double* point);
 
-protected:
+    /**
+     * isEnable
+     * @return ture enable, otherwise false
+     */
+    bool isEnable() const;
 
-    void movJ(const cr5_bringup::MovJConstPtr & point);
-    void movL(const cr5_bringup::MovLConstPtr & point);
+    /**
+     * isConnected
+     * @return ture connected, otherwise false
+     */
+    bool isConnected() const;
+
+protected:
+    void movJ(const cr5_bringup::MovJConstPtr& point);
+    void movL(const cr5_bringup::MovLConstPtr& point);
     void servoJ(const cr5_bringup::ServoJConstPtr& points);
     void servoP(const cr5_bringup::ServoPConstPtr& point);
-    void relMovJ(const cr5_bringup::RelMovJConstPtr & point);
-    void relMovL(const cr5_bringup::RelMovLConstPtr & point);
-    void jointMovJ(const cr5_bringup::JointMovJConstPtr & point);
+    void relMovJ(const cr5_bringup::RelMovJConstPtr& point);
+    void relMovL(const cr5_bringup::RelMovLConstPtr& point);
+    void jointMovJ(const cr5_bringup::JointMovJConstPtr& point);
 
     bool clearError(cr5_bringup::ClearError::Request& request, cr5_bringup::ClearError::Response& response);
     bool enableRobot(cr5_bringup::EnableRobot::Request& request, cr5_bringup::EnableRobot::Response& response);
@@ -88,8 +99,7 @@ protected:
 private:
     void feedbackHandle(const ros::TimerEvent& tm,
                         actionlib::ActionServer<FollowJointTrajectoryAction>::GoalHandle handle);
-    void moveHandle(const ros::TimerEvent& tm,
-                    actionlib::ActionServer<FollowJointTrajectoryAction>::GoalHandle handle);
+    void moveHandle(const ros::TimerEvent& tm, actionlib::ActionServer<FollowJointTrajectoryAction>::GoalHandle handle);
     void goalHandle(actionlib::ActionServer<FollowJointTrajectoryAction>::GoalHandle handle);
     void cancelHandle(actionlib::ActionServer<FollowJointTrajectoryAction>::GoalHandle handle);
 };

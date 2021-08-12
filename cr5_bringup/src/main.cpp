@@ -27,7 +27,9 @@ int main(int argc, char* argv[])
         async_spinner.start();
 
         sensor_msgs::JointState joint_state_msg;
-        ros::Publisher joint_state_pub = node.advertise<sensor_msgs::JointState>("/joint_states", 100);
+        ros::Publisher joint_state_pub = private_node.advertise<sensor_msgs::JointState>("/joint_states", 100);
+        cr5_bringup::RobotStatus robot_status_msg;
+        ros::Publisher robot_status_pub = private_node.advertise<cr5_bringup::RobotStatus>("msg/RobotStatus", 100);
 
         for (uint32_t i = 0; i < 6; i++)
         {
@@ -35,7 +37,7 @@ int main(int argc, char* argv[])
             joint_state_msg.name.push_back(std::string("joint") + std::to_string(i + 1));
         }
 
-        CR5Robot robot(private_node, "/flow_joint_trajectory/follow_joint_trajectory");
+        CR5Robot robot(private_node, "/follow_joint_trajectory/follow_joint_trajectory");
 
         double rate_vale = private_node.param("JointStatePublishRate", 10);
 
@@ -44,14 +46,22 @@ int main(int argc, char* argv[])
         double position[6];
         while (ros::ok())
         {
+            //
+            // publish joint state
+            //
             robot.getJointState(position);
             joint_state_msg.header.stamp = ros::Time::now();
             joint_state_msg.header.frame_id = "dummy_link";
-
             for (uint32_t i = 0; i < 6; i++)
                 joint_state_msg.position[i] = position[i];
-
             joint_state_pub.publish(joint_state_msg);
+
+            //
+            // publish robot status
+            //
+            robot_status_msg.is_enable = robot.isEnable();
+            robot_status_msg.is_connected = robot.isConnected();
+            robot_status_pub.publish(robot_status_msg);
 
             rate.sleep();
         }

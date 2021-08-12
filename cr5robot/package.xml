@@ -1,15 +1,20 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>cr5robot</name>
-  <version>1.0.0</version>
-  <description>The cr5robot package</description>
+    <name>cr5robot</name>
+    <version>1.0.0</version>
+    <description>The cr5robot package</description>
 
-  <maintainer email="zhangran@tdobot.cc">zhangran</maintainer>
+    <maintainer email="zhangran@tdobot.cc">zhangran</maintainer>
 
-  <license>BSD</license>
-  <buildtool_depend>catkin</buildtool_depend>
+    <license>BSD</license>
+    <buildtool_depend>catkin</buildtool_depend>
 
-  <export>
-    <!-- Other tools can request additional information be placed here -->
-  </export>
+    <exec_depend>cr5_bringup</exec_depend>
+    <exec_depend>cr5_description</exec_depend>
+    <exec_depend>cr5_moveit</exec_depend>
+    <exec_depend>rviz_cr5control</exec_depend>
+
+    <export>
+        <metapackage/>
+    </export>
 </package>
