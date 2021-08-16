@@ -6,7 +6,7 @@
 ```
 cd $HOME/catkin_ws/src
 
-git clone "git url" -b kinetic-devel
+git clone https://github.com/Dobot-Arm/CR5_ROS.git -b kinetic-devel
 
 cd $HOME/catkin_ws
 
@@ -22,7 +22,7 @@ source $HOME/catkin_ws/devel/setup.bash
 ```
 cd $HOME/catkin_ws/src
 
-git clone "git url" -b melodic-devel
+git clone https://github.com/Dobot-Arm/CR5_ROS.git -b melodic-devel
 
 cd $HOME/catkin_ws
 
@@ -60,20 +60,20 @@ source $HOME/catkin_ws/devel/setup.bash
 
 ## 控制真实机械臂
 
-* 使用如下命令连接机械臂, robot_ip 为实际机械臂所对应的IP地址
+* **使用如下命令连接机械臂, robot_ip 为实际机械臂所对应的IP地址**
     ```
-    roslaunch cr5_bringup bringup.launch robot_ip:=192.168.5.1
+    roslaunch cr5_bringup cr5_bringup.launch robot_ip:=192.168.5.1
     ```
 
-* 使用如下命令启动 Moveit
+* **使用如下命令启动 Moveit**
     ```
     roslaunch cr5_moveit cr5_moveit.launch
     ```
 
-* 在 rviz 中添加 CR5Control 插件控制面板，用来 使能机械臂
+* **在 rviz 中添加 CR5Control 插件控制面板，用来 使能机械臂**
     1. 点击 rviz 工具栏上的 Panels --> "Add New Panel"
     2. 选中 CR5Control, 再点击 “OK”
-    3. 点击 “EnableRobot” 使用机械臂
+    3. 点击 “EnableRobot” 使机械臂
     4. 当状态样上显示 “Enable” “Connected” 表示机械臂已连接和使能，即可通过 Moveit 控制机械臂
 
     ![CR5Control](./cr5control.jpg)
@@ -81,4 +81,4 @@ source $HOME/catkin_ws/devel/setup.bash
 
 # 自定义功能开发
 
-    cr5_bringup 中定义以相当 msg 和 srv，可户通过这些底层 msg 和 srv 完成对机械臂的控制
+    cr5_bringup 中定义了 msg 和 srv，可户通过这些底层 msg 和 srv 完成对机械臂的控制
