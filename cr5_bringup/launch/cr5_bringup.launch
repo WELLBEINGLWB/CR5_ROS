@@ -6,7 +6,7 @@
 <launch>
 
   <!-- robot_ip: IP-address of the robot's socket-messaging server -->
-  <arg name="robot_id" default="cr5_robot" />
+  <arg name="robot_id" default="CR5Robot" />
   <arg name="robot_ip" doc="IP of the controller" />
   <arg name="robot_port" doc="IP of the controller" default="9001"/>
 

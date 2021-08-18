@@ -81,4 +81,4 @@ source $HOME/catkin_ws/devel/setup.bash
 
 # 自定义功能开发
 
-    cr5_bringup 中定义了 msg 和 srv，可户通过这些底层 msg 和 srv 完成对机械臂的控制
+    cr5_bringup 中定义了 msg 和 srv，用户可通过这些底层 msg 和 srv 完成对机械臂的控制
