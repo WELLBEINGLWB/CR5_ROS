@@ -1,0 +1,18 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/andy/Desktop/ws_cr5robot/devel/include/**",
+        "/opt/ros/melodic/include/**",
+        "/home/andy/Desktop/ws_cr5robot/src/cr5robot/cr5_bringup/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}

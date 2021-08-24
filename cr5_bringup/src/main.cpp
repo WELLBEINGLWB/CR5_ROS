@@ -13,6 +13,7 @@
 #include <ros/param.h>
 #include <cr5_bringup/cr5_robot.h>
 #include <sensor_msgs/JointState.h>
+#include <cr5_bringup/ToolVectorActual.h>
 
 int main(int argc, char* argv[])
 {
@@ -30,6 +31,9 @@ int main(int argc, char* argv[])
         ros::Publisher joint_state_pub = private_node.advertise<sensor_msgs::JointState>("/joint_states", 100);
         cr5_bringup::RobotStatus robot_status_msg;
         ros::Publisher robot_status_pub = private_node.advertise<cr5_bringup::RobotStatus>("msg/RobotStatus", 100);
+
+        cr5_bringup::ToolVectorActual tool_vector_actual_msg;
+        ros::Publisher tool_vector_pub = private_node.advertise<cr5_bringup::ToolVectorActual>("msg/ToolVectorActual", 100);
 
         for (uint32_t i = 0; i < 6; i++)
         {
@@ -55,6 +59,16 @@ int main(int argc, char* argv[])
             for (uint32_t i = 0; i < 6; i++)
                 joint_state_msg.position[i] = position[i];
             joint_state_pub.publish(joint_state_msg);
+
+            double val[6];
+            robot.getToolVectorActual(val);
+            tool_vector_actual_msg.x = val[0];
+            tool_vector_actual_msg.y = val[1];
+            tool_vector_actual_msg.z = val[2];
+            tool_vector_actual_msg.rx = val[3];
+            tool_vector_actual_msg.ry = val[4];
+            tool_vector_actual_msg.rz = val[5];
+            tool_vector_pub.publish(tool_vector_actual_msg);
 
             //
             // publish robot status

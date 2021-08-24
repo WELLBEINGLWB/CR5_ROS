@@ -72,6 +72,12 @@ public:
     void getJointState(double* point);
 
     /**
+     * getToolVectorActual
+     * @param val value
+     */
+    void getToolVectorActual(double* val);
+
+    /**
      * isEnable
      * @return ture enable, otherwise false
      */

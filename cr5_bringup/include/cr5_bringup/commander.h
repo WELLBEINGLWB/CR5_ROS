@@ -79,6 +79,7 @@ protected:
 private:
     std::mutex mutex_;
     double current_joint_[6];
+    double tool_vector_[6];
     RealTimeData real_time_data_;
     std::atomic<bool> is_running_;
     std::unique_ptr<std::thread> thread_;
@@ -106,6 +107,13 @@ public:
         mutex_.unlock();
     }
 
+    void getToolVectorActual(double* val)
+    {
+        mutex_.lock();
+        memcpy(val, tool_vector_, sizeof(tool_vector_));
+        mutex_.unlock();
+    }
+
     void recvTask()
     {
         while (is_running_)
@@ -119,6 +127,8 @@ public:
                         mutex_.lock();
                         for (uint32_t i = 0; i < 6; i++)
                             current_joint_[i] = deg2Rad(real_time_data_.q_actual[i]);
+
+                        memcpy(tool_vector_, real_time_data_.tool_vector_actual, sizeof(tool_vector_));
                         mutex_.unlock();
                     }
                     else

@@ -52,14 +52,41 @@ add_message_files(FILES
         ServoJ.msg
         ServoP.msg
         RobotStatus.msg
+        ToolVectorActual.msg
         )
 
 ## Generate services in the 'srv' folder
 add_service_files(
         FILES
+        AccJ.srv
+        AccL.srv
+        AO.srv
+        AOExecute.srv
+        Arch.srv
         ClearError.srv
+        ContinueScript.srv
+        CP.srv
         DisableRobot.srv
+        DO.srv
+        DOExecute.srv
         EnableRobot.srv
+        GetHoldRegs.srv
+        Limz.srv
+        PauseScript.srv
+        PayLoad.srv
+        PowerOn.srv
+        ResetRobot.srv
+        RunScript.srv
+        SetArmOrientation.srv
+        SetHoldRegs.srv
+        SpeedFactor.srv
+        SpeedJ.srv
+        SpeedL.srv
+        StopScript.srv
+        Tool.srv
+        ToolDO.srv
+        ToolDOExecute.srv
+        User.srv
 )
 
 ## Generate actions in the 'action' folder
