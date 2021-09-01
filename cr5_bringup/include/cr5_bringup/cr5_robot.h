@@ -58,7 +58,7 @@ public:
     /**
      * CR5Robot
      */
-    ~CR5Robot();
+    ~CR5Robot() override;
 
     /**
      * init

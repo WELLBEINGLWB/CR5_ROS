@@ -9,6 +9,9 @@
  ***********************************************************************************************************************
  */
 
+#pragma clang diagnostic push
+
+#pragma ide diagnostic ignored "OCUnusedGlobalDeclarationInspection"
 #pragma once
 
 #include <vector>
@@ -16,7 +19,7 @@
 #include <memory>
 #include <thread>
 #include <mutex>
-#include <string.h>
+#include <cstring>
 #include <cr5_bringup/tcp_socket.h>
 
 #pragma pack(push, 1)
@@ -87,7 +90,7 @@ private:
     std::shared_ptr<TcpClient> dash_board_tcp_;
 
 public:
-    CR5Commander(std::string ip)
+    explicit CR5Commander(std::string ip)
     {
         is_running_ = false;
         real_time_tcp_ = std::make_shared<TcpClient>(ip, 30003);
@@ -242,8 +245,8 @@ public:
     void relMovJ(double offset1, double offset2, double offset3, double offset4, double offset5, double offset6)
     {
         char cmd[100];
-        sprintf(cmd, "RelMovJ(%0.3f,%0.3f,%0.3f,%0.3f,%0.3f,%0.3f)", offset1, offset1, offset1, offset1, offset1,
-                offset1);
+        sprintf(cmd, "RelMovJ(%0.3f,%0.3f,%0.3f,%0.3f,%0.3f,%0.3f)", offset1, offset2, offset3, offset4, offset5,
+                offset6);
         real_time_tcp_->tcpSend(cmd, strlen(cmd));
     }
 
@@ -269,13 +272,15 @@ public:
     }
 
 private:
-    inline double rad2Deg(double rad)
+    static inline double rad2Deg(double rad)
     {
         return rad * 180.0 / PI;
     }
 
-    inline double deg2Rad(double deg)
+    static inline double deg2Rad(double deg)
     {
         return deg * PI / 180.0;
     }
 };
+
+#pragma clang diagnostic pop

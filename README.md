@@ -2,34 +2,38 @@
 
 # 源码编译
 ## ubuntu16.04
-
+###下载源码
 ```
 cd $HOME/catkin_ws/src
 
 git clone https://github.com/Dobot-Arm/CR5_ROS.git -b kinetic-devel
 
 cd $HOME/catkin_ws
-
-# building
+```
+###编译
+```
 catkin_make
-
-# activate this workspace
+```
+###设置环境变量
+```
 source $HOME/catkin_ws/devel/setup.bash
 ```
 
 ## ubuntu18.04
-
+###下载源码
 ```
 cd $HOME/catkin_ws/src
 
 git clone https://github.com/Dobot-Arm/CR5_ROS.git -b melodic-devel
 
 cd $HOME/catkin_ws
-
-# building
+```
+###编译
+```
 catkin_make
-
-# activate this workspace
+```
+###设置环境变量
+```
 source $HOME/catkin_ws/devel/setup.bash
 ```
 
@@ -81,4 +85,4 @@ source $HOME/catkin_ws/devel/setup.bash
 
 # 自定义功能开发
 
-    cr5_bringup 中定义了 msg 和 srv，用户可通过这些底层 msg 和 srv 完成对机械臂的控制
+    cr5_bringup 中定义了 msg 和 srv，用户可通过这些底层 msg 和 srv 实现对机械臂的控制

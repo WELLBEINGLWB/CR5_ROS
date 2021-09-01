@@ -4,7 +4,7 @@
  * @author ZhangRan
  * @date   2021/08/07
  *
- * <h2><center>&copy; COPYRIGHT 2021 DOBOT CORPORATION</center></h2>
+ * <h2><center>&copy; COPYRIGHT 2021 Dobot CORPORATION</center></h2>
  *
  ***********************************************************************************************************************
  */
@@ -33,7 +33,8 @@ int main(int argc, char* argv[])
         ros::Publisher robot_status_pub = private_node.advertise<cr5_bringup::RobotStatus>("msg/RobotStatus", 100);
 
         cr5_bringup::ToolVectorActual tool_vector_actual_msg;
-        ros::Publisher tool_vector_pub = private_node.advertise<cr5_bringup::ToolVectorActual>("msg/ToolVectorActual", 100);
+        ros::Publisher tool_vector_pub =
+            private_node.advertise<cr5_bringup::ToolVectorActual>("msg/ToolVectorActual", 100);
 
         for (uint32_t i = 0; i < 6; i++)
         {

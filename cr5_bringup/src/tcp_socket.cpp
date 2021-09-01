@@ -10,8 +10,9 @@
  */
 
 #include <ros/ros.h>
-#include <errno.h>
-#include <string.h>
+#include <cerrno>
+#include <cstring>
+#include <utility>
 #include <unistd.h>
 #include <arpa/inet.h>
 #include <sys/socket.h>
@@ -19,7 +20,7 @@
 #include <sys/select.h>
 #include <cr5_bringup/tcp_socket.h>
 
-TcpClient::TcpClient(std::string ip, uint16_t port) : fd_(-1), port_(port), ip_(ip), is_connected_(false)
+TcpClient::TcpClient(std::string ip, uint16_t port) : fd_(-1), port_(port), ip_(std::move(ip)), is_connected_(false)
 {
 }
 
@@ -47,7 +48,7 @@ void TcpClient::connect()
             throw TcpClientException(toString() + std::string(" socket : ") + strerror(errno));
     }
 
-    sockaddr_in addr;
+    sockaddr_in addr = {};
 
     memset(&addr, 0, sizeof(addr));
     inet_pton(AF_INET, ip_.c_str(), &addr.sin_addr);
@@ -86,7 +87,7 @@ void TcpClient::tcpSend(const void* buf, uint32_t len)
     const auto* tmp = (const uint8_t*)buf;
     while (len)
     {
-        int err = ::send(fd_, tmp, len, MSG_NOSIGNAL);
+        int err = (int)::send(fd_, tmp, len, MSG_NOSIGNAL);
         if (err < 0)
         {
             disConnect();
@@ -99,10 +100,10 @@ void TcpClient::tcpSend(const void* buf, uint32_t len)
 
 bool TcpClient::tcpRecv(void* buf, uint32_t len, uint32_t timeout)
 {
-    uint8_t* tmp = (uint8_t*)buf;
+    uint8_t* tmp = (uint8_t*)buf;    // NOLINT(modernize-use-auto)
 
     fd_set read_fds;
-    timeval tv;
+    timeval tv = { 0, 0 };
 
     while (len)
     {
@@ -122,7 +123,7 @@ bool TcpClient::tcpRecv(void* buf, uint32_t len, uint32_t timeout)
             return false;
         }
 
-        err = ::read(fd_, tmp, len);
+        err = (int)::read(fd_, tmp, len);
         if (err < 0)
         {
             disConnect();
