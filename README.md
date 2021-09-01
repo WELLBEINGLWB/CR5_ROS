@@ -1,88 +1,87 @@
 # <center>CR5Robot</center>
 
-# 源码编译
+Chinese version of the README -> please [click here](./README-CN.md)
+
+# Building
 ## ubuntu16.04
-###下载源码
+
 ```
 cd $HOME/catkin_ws/src
 
 git clone https://github.com/Dobot-Arm/CR5_ROS.git -b kinetic-devel
 
 cd $HOME/catkin_ws
-```
-###编译
-```
+
+# building
 catkin_make
-```
-###设置环境变量
-```
+
+# activate this workspace
 source $HOME/catkin_ws/devel/setup.bash
 ```
 
 ## ubuntu18.04
-###下载源码
+
 ```
 cd $HOME/catkin_ws/src
 
 git clone https://github.com/Dobot-Arm/CR5_ROS.git -b melodic-devel
 
 cd $HOME/catkin_ws
-```
-###编译
-```
+
+# building
 catkin_make
-```
-###设置环境变量
-```
+
+# activate this workspace
 source $HOME/catkin_ws/devel/setup.bash
 ```
 
-# 示例演示
+# Example Demonstration
 
-## 在仿真环境下使用
+## Apply in simulation environment
 
-1. ## rviz 显示
+1. ## rviz display
 
     ```
     roslaunch cr5_description display.launch
     ```
 
-    可通过 joint_state_publisher_gui 调节各关节的角度，在 rviz 上看到其显示效果
+    User can adjust the angle of each joint by joint_state_publisher_gui, and see the result from rviz
 
-    ![rviz显示](./rviz.jpg)
+    ![rviz display](./rviz.jpg)
 
 
-2. ## moveit 控制
-    * 使用如下命令启动 moveit
+2. ## moveit control
+    * Active moveit by the following commands
     ```
     roslaunch cr5_moveit demo.launch
     ```
-    * 鼠标将关节拖到任意的角度，点击 "Plan and Execute" 即可看到运行效果
+    * Drag the joint to any direction, then click "Plan and Excute" to see the result
 
-    ![moveit显示](./moveit.gif)
+    ![moveit display](./moveit.gif)
 
 
-## 控制真实机械臂
+## Controlling real robotic arm
 
-* **使用如下命令连接机械臂, robot_ip 为实际机械臂所对应的IP地址**
+* **Connect the robotic arm with following command, and robot_ip is the IP address that the real arm locates**
     ```
     roslaunch cr5_bringup cr5_bringup.launch robot_ip:=192.168.5.1
     ```
 
-* **使用如下命令启动 Moveit**
+* **Active Moveit with following command**
     ```
     roslaunch cr5_moveit cr5_moveit.launch
     ```
 
-* **在 rviz 中添加 CR5Control 插件控制面板，用来 使能机械臂**
-    1. 点击 rviz 工具栏上的 Panels --> "Add New Panel"
-    2. 选中 CR5Control, 再点击 “OK”
-    3. 点击 “EnableRobot” 使机械臂
-    4. 当状态样上显示 “Enable” “Connected” 表示机械臂已连接和使能，即可通过 Moveit 控制机械臂
+* **Install CR5Control Plugin to enable the robotic arm**
+    
+    1. Press Panels on the tool bar of rviz --> "Add New Panel"
+    2. Choose CR5Control, then press "OK"
+    3. Press "EnableRobot" to enable the arm
+    4. When "Connected" and "Enable" is displayed on the status bar, it means the robotic arm is connected and enabled, and users can control the robotic arm via Moveit
 
     ![CR5Control](./cr5control.jpg)
 
 
-# 自定义功能开发
+# Custom Function Development
 
-    cr5_bringup 中定义了 msg 和 srv，用户可通过这些底层 msg 和 srv 实现对机械臂的控制
+    Msg and scr is defined in cr5_bringup. Users can control the robotic arm via those underlying commands
