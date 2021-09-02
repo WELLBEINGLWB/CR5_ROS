@@ -32,13 +32,13 @@ void CR5Robot::init()
     commander_ = std::make_shared<CR5Commander>(ip);
     commander_->init();
 
-    subscriber_tbl_.push_back(control_nh_.subscribe("msg/MovJ", 100, &CR5Robot::movJ, this));
-    subscriber_tbl_.push_back(control_nh_.subscribe("msg/MovL", 100, &CR5Robot::movL, this));
-    subscriber_tbl_.push_back(control_nh_.subscribe("msg/RelMovJ", 100, &CR5Robot::relMovJ, this));
-    subscriber_tbl_.push_back(control_nh_.subscribe("msg/RelMovL", 100, &CR5Robot::relMovL, this));
-    subscriber_tbl_.push_back(control_nh_.subscribe("msg/ServoJ", 100, &CR5Robot::servoJ, this));
-    subscriber_tbl_.push_back(control_nh_.subscribe("msg/ServoP", 100, &CR5Robot::servoP, this));
-    subscriber_tbl_.push_back(control_nh_.subscribe("msg/JointMovJ", 100, &CR5Robot::jointMovJ, this));
+    server_tbl_.push_back(control_nh_.advertiseService("srv/MovJ", &CR5Robot::movJ, this));
+    server_tbl_.push_back(control_nh_.advertiseService("srv/MovL", &CR5Robot::movL, this));
+    server_tbl_.push_back(control_nh_.advertiseService("srv/RelMovJ", &CR5Robot::relMovJ, this));
+    server_tbl_.push_back(control_nh_.advertiseService("srv/RelMovL", &CR5Robot::relMovL, this));
+    server_tbl_.push_back(control_nh_.advertiseService("srv/ServoJ", &CR5Robot::servoJ, this));
+    server_tbl_.push_back(control_nh_.advertiseService("srv/ServoP", &CR5Robot::servoP, this));
+    server_tbl_.push_back(control_nh_.advertiseService("srv/JointMovJ", &CR5Robot::jointMovJ, this));
 
     server_tbl_.push_back(control_nh_.advertiseService("srv/ClearError", &CR5Robot::clearError, this));
     server_tbl_.push_back(control_nh_.advertiseService("srv/DisableRobot", &CR5Robot::disableRobot, this));
@@ -129,41 +129,6 @@ void CR5Robot::getJointState(double* point)
     commander_->getCurrentJointStatus(point);
 }
 
-void CR5Robot::movJ(const cr5_bringup::MovJConstPtr& point)
-{
-    commander_->movJ(point->x, point->y, point->z, point->a, point->b, point->c);
-}
-
-void CR5Robot::movL(const cr5_bringup::MovLConstPtr& point)
-{
-    commander_->movL(point->x, point->y, point->z, point->a, point->b, point->c);
-}
-
-void CR5Robot::servoJ(const cr5_bringup::ServoJConstPtr& points)
-{
-    commander_->servoJ(points->j1, points->j2, points->j3, points->j4, points->j5, points->j6);
-}
-
-void CR5Robot::servoP(const cr5_bringup::ServoPConstPtr& point)
-{
-    commander_->servoP(point->x, point->y, point->z, point->a, point->b, point->c);
-}
-
-void CR5Robot::relMovJ(const cr5_bringup::RelMovJConstPtr& point)
-{
-    commander_->relMovJ(point->offset1, point->offset2, point->offset3, point->offset4, point->offset5, point->offset6);
-}
-
-void CR5Robot::relMovL(const cr5_bringup::RelMovLConstPtr& point)
-{
-    commander_->relMovL(point->x, point->y, point->z);
-}
-
-void CR5Robot::jointMovJ(const cr5_bringup::JointMovJConstPtr& point)
-{
-    commander_->jointMovJ(point->j1, point->j2, point->j3, point->j4, point->j5, point->j6);
-}
-
 bool CR5Robot::clearError(cr5_bringup::ClearError::Request& request, cr5_bringup::ClearError::Response& response)
 {
     try
@@ -225,4 +190,101 @@ bool CR5Robot::isConnected() const
 void CR5Robot::getToolVectorActual(double* val)
 {
     commander_->getToolVectorActual(val);
+}
+
+bool CR5Robot::movJ(cr5_bringup::MovJ::Request& request, cr5_bringup::MovJ::Response& response)
+{
+    try
+    {
+        commander_->movJ(request.x, request.y, request.z, request.z, request.b, request.c);
+        return true;
+    }
+    catch (const TcpClientException& err)
+    {
+        ROS_ERROR("%s", err.what());
+        return false;
+    }
+}
+
+bool CR5Robot::movL(cr5_bringup::MovL::Request& request, cr5_bringup::MovL::Response& response)
+{
+    try
+    {
+        commander_->movL(request.x, request.y, request.z, request.z, request.b, request.c);
+        return true;
+    }
+    catch (const TcpClientException& err)
+    {
+        ROS_ERROR("%s", err.what());
+        return false;
+    }
+}
+
+bool CR5Robot::servoJ(cr5_bringup::ServoJ::Request& request, cr5_bringup::ServoJ::Response& response)
+{
+    try
+    {
+        commander_->servoJ(request.j1, request.j2, request.j3, request.j4, request.j5, request.j6);
+        return true;
+    }
+    catch (const TcpClientException& err)
+    {
+        ROS_ERROR("%s", err.what());
+        return false;
+    }
+}
+
+bool CR5Robot::servoP(cr5_bringup::ServoP::Request& request, cr5_bringup::ServoP::Response& response)
+{
+    try
+    {
+        commander_->servoP(request.x, request.y, request.z, request.a, request.b, request.c);
+        return true;
+    }
+    catch (const TcpClientException& err)
+    {
+        ROS_ERROR("%s", err.what());
+        return false;
+    }
+}
+
+bool CR5Robot::relMovJ(cr5_bringup::RelMovJ::Request& request, cr5_bringup::RelMovJ::Response& response)
+{
+    try
+    {
+        commander_->relMovJ(request.offset1, request.offset2, request.offset3, request.offset4, request.offset5,
+                            request.offset6);
+        return true;
+    }
+    catch (const TcpClientException& err)
+    {
+        ROS_ERROR("%s", err.what());
+        return false;
+    }
+}
+bool CR5Robot::relMovL(cr5_bringup::RelMovL::Request& request, cr5_bringup::RelMovL::Response& response)
+{
+    try
+    {
+        commander_->relMovL(request.x, request.y, request.z);
+        return true;
+    }
+    catch (const TcpClientException& err)
+    {
+        ROS_ERROR("%s", err.what());
+        return false;
+    }
+}
+bool CR5Robot::jointMovJ(cr5_bringup::JointMovJ::Request& request, cr5_bringup::JointMovJ::Response& response)
+{
+    try
+    {
+        commander_->jointMovJ(request.j1, request.j2, request.j3, request.j4, request.j5, request.j6);
+        return true;
+    }
+    catch (const TcpClientException& err)
+    {
+        ROS_ERROR("%s", err.what());
+        return false;
+    }
 }

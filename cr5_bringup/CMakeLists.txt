@@ -44,13 +44,6 @@ find_package(Boost REQUIRED COMPONENTS system)
 
 ## Generate messages in the 'msg' folder
 add_message_files(FILES
-        MovJ.msg
-        MovL.msg
-        RelMovJ.msg
-        RelMovL.msg
-        JointMovJ.msg
-        ServoJ.msg
-        ServoP.msg
         RobotStatus.msg
         ToolVectorActual.msg
         )
@@ -58,6 +51,13 @@ add_message_files(FILES
 ## Generate services in the 'srv' folder
 add_service_files(
         FILES
+        JointMovJ.srv
+        MovJ.srv
+        MovL.srv
+        RelMovJ.srv
+        RelMovL.srv
+        ServoJ.srv
+        ServoP.srv
         AccJ.srv
         AccL.srv
         AO.srv

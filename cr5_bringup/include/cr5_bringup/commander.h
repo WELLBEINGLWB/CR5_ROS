@@ -90,7 +90,8 @@ private:
     std::shared_ptr<TcpClient> dash_board_tcp_;
 
 public:
-    explicit CR5Commander(std::string ip)
+    explicit CR5Commander(const std::string& ip)
+        : current_joint_{}, tool_vector_{}, real_time_data_{}, is_running_(false)
     {
         is_running_ = false;
         real_time_tcp_ = std::make_shared<TcpClient>(ip, 30003);

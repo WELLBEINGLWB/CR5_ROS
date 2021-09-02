@@ -90,14 +90,21 @@ public:
     bool isConnected() const;
 
 protected:
-    void movJ(const cr5_bringup::MovJConstPtr& point);
-    void movL(const cr5_bringup::MovLConstPtr& point);
-    void servoJ(const cr5_bringup::ServoJConstPtr& points);
-    void servoP(const cr5_bringup::ServoPConstPtr& point);
-    void relMovJ(const cr5_bringup::RelMovJConstPtr& point);
-    void relMovL(const cr5_bringup::RelMovLConstPtr& point);
-    void jointMovJ(const cr5_bringup::JointMovJConstPtr& point);
+//    void movJ(const cr5_bringup::MovJConstPtr& point);
+//    void movL(const cr5_bringup::MovLConstPtr& point);
+//    void servoJ(const cr5_bringup::ServoJConstPtr& points);
+//    void servoP(const cr5_bringup::ServoPConstPtr& point);
+//    void relMovJ(const cr5_bringup::RelMovJConstPtr& point);
+//    void relMovL(const cr5_bringup::RelMovLConstPtr& point);
+//    void jointMovJ(const cr5_bringup::JointMovJConstPtr& point);
 
+    bool movJ(cr5_bringup::MovJ::Request& request, cr5_bringup::MovJ::Response& response);
+    bool movL(cr5_bringup::MovL::Request& request, cr5_bringup::MovL::Response& response);
+    bool servoJ(cr5_bringup::ServoJ::Request& request, cr5_bringup::ServoJ::Response& response);
+    bool servoP(cr5_bringup::ServoP::Request& request, cr5_bringup::ServoP::Response& response);
+    bool relMovJ(cr5_bringup::RelMovJ::Request& request, cr5_bringup::RelMovJ::Response& response);
+    bool relMovL(cr5_bringup::RelMovL::Request& request, cr5_bringup::RelMovL::Response& response);
+    bool jointMovJ(cr5_bringup::JointMovJ::Request& request, cr5_bringup::JointMovJ::Response& response);
     bool clearError(cr5_bringup::ClearError::Request& request, cr5_bringup::ClearError::Response& response);
     bool enableRobot(cr5_bringup::EnableRobot::Request& request, cr5_bringup::EnableRobot::Response& response);
     bool disableRobot(cr5_bringup::DisableRobot::Request& request, cr5_bringup::DisableRobot::Response& response);
