@@ -33,6 +33,7 @@ void CR5Robot::init()
     commander_->init();
 
     server_tbl_.push_back(control_nh_.advertiseService("srv/MovJ", &CR5Robot::movJ, this));
+    server_tbl_.push_back(control_nh_.advertiseService("srv/MoveJog", &CR5Robot::moveJog, this));
     server_tbl_.push_back(control_nh_.advertiseService("srv/MovL", &CR5Robot::movL, this));
     server_tbl_.push_back(control_nh_.advertiseService("srv/RelMovJ", &CR5Robot::relMovJ, this));
     server_tbl_.push_back(control_nh_.advertiseService("srv/RelMovL", &CR5Robot::relMovL, this));
@@ -285,6 +286,21 @@ bool CR5Robot::jointMovJ(cr5_bringup::JointMovJ::Request& request, cr5_bringup::
     catch (const TcpClientException& err)
     {
         ROS_ERROR("%s", err.what());
+        return false;
+    }
+}
+
+bool CR5Robot::moveJog(cr5_bringup::MoveJog::Request& request, cr5_bringup::MoveJog::Response& response)
+{
+    try
+    {
+        commander_->moveJog(request.axisID);
+        return true;
+    }
+    catch (const TcpClientException& err)
+    {
+        ROS_ERROR("%s", err.what());
+        response.res = 0;
         return false;
     }
 }

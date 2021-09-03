@@ -87,6 +87,7 @@ add_service_files(
         ToolDO.srv
         ToolDOExecute.srv
         User.srv
+        MoveJog.srv
 )
 
 ## Generate actions in the 'action' folder

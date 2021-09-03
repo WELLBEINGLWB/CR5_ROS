@@ -243,6 +243,13 @@ public:
         real_time_tcp_->tcpSend(cmd, strlen(cmd));
     }
 
+    void moveJog(const std::string& axis)
+    {
+        char cmd[100];
+        sprintf(cmd, "MoveJog(%s)", axis.c_str());
+        real_time_tcp_->tcpSend(cmd, strlen(cmd));
+    }
+
     void relMovJ(double offset1, double offset2, double offset3, double offset4, double offset5, double offset6)
     {
         char cmd[100];
