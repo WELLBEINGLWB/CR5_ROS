@@ -97,4 +97,4 @@ source ~/.bashrc
 
 # 自定义功能开发
 
-    cr5_bringup 中定义了 msg 和 srv，用户可通过这些底层 msg 和 srv 实现对机械臂的控制
+    dobot_bringup 中定义了 msg 和 srv，用户可通过这些底层 msg 和 srv 实现对机械臂的控制

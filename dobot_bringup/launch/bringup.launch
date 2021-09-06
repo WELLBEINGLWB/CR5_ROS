@@ -6,11 +6,9 @@
 <launch>
 
   <!-- robot_ip: IP-address of the robot's socket-messaging server -->
-  <arg name="robot_id" default="CR5Robot" />
-  <arg name="robot_ip" doc="IP of the controller" />
-  <arg name="robot_port" doc="IP of the controller" default="9001"/>
+  <arg name="robot_ip" doc="IP of the controller" default="192.168.5.1"/>
 
-  <node name="$(arg robot_id)" pkg="dobot_bringup" type="dobot_bringup" output="screen" >
+  <node name="$(env DOBOT_TYPE)_robot" pkg="dobot_bringup" type="dobot_bringup" output="screen" >
     <param name="joint_publish_rate" type="double" value="10" />
     <param name="robot_ip_address" type="str" value="$(arg robot_ip)"/>
   </node>

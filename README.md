@@ -21,18 +21,32 @@ source $HOME/catkin_ws/devel/setup.bash
 
 ## ubuntu18.04
 
+### Use git to clone the source code
 ```
 cd $HOME/catkin_ws/src
-
 git clone https://github.com/Dobot-Arm/CR5_ROS.git -b melodic-devel
-
 cd $HOME/catkin_ws
+```
 
-# building
+### building
+```
 catkin_make
+```
 
-# activate this workspace
+### activate this workspace
+```
 source $HOME/catkin_ws/devel/setup.bash
+```
+# set the dobot type
+### If you use CR5 robot， please type the fllow commands
+```
+echo "export DOBOT_TYPE=cr5" >> ~/.bashrc
+source ~/.bashrc
+```
+### If you use CR3 robot， please type the fllow commands
+```
+echo "export DOBOT_TYPE=cr3" >> ~/.bashrc
+source ~/.bashrc
 ```
 
 # Example Demonstration
@@ -53,7 +67,7 @@ source $HOME/catkin_ws/devel/setup.bash
 2. ## moveit control
     * Active moveit by the following commands
     ```
-    roslaunch cr5_moveit demo.launch
+    roslaunch dobot_moveit demo.launch
     ```
     * Drag the joint to any direction, then click "Plan and Excute" to see the result
 
@@ -64,12 +78,12 @@ source $HOME/catkin_ws/devel/setup.bash
 
 * **Connect the robotic arm with following command, and robot_ip is the IP address that the real arm locates**
     ```
-    roslaunch cr5_bringup cr5_bringup.launch robot_ip:=192.168.5.1
+    roslaunch dobot_bringup bringup.launch robot_ip:=192.168.5.1
     ```
 
 * **Active Moveit with following command**
     ```
-    roslaunch cr5_moveit cr5_moveit.launch
+    roslaunch dobot_moveit moveit.launch
     ```
 
 * **Install DobotControl Plugin to enable the robotic arm**
@@ -84,4 +98,4 @@ source $HOME/catkin_ws/devel/setup.bash
 
 # Custom Function Development
 
-    Msg and scr is defined in cr5_bringup. Users can control the robotic arm via those underlying commands
+    Msg and srv is defined in dobot_bringup. Users can control the robotic arm via those underlying commands
