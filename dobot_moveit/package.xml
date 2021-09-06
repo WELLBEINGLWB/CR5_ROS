@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-  <name>moveit</name>
+  <name>dobot_moveit</name>
   <version>0.0.0</version>
   <description>The moveit package</description>
 

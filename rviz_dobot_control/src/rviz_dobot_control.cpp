@@ -19,9 +19,9 @@ DobotControl::DobotControl(QWidget* parent)
     , is_enable_(false)
     , is_connected_(false)
     , ui(new Ui::ControlMenu)
-    , enable_robot_topic_("/CR5Robot/srv/EnableRobot")
-    , disable_robot_topic_("/CR5Robot/srv/DisableRobot")
-    , robot_status_topic_("/CR5Robot/msg/RobotStatus")
+    , enable_robot_topic_("/dobot_bringup/srv/EnableRobot")
+    , disable_robot_topic_("/dobot_bringup/srv/DisableRobot")
+    , robot_status_topic_("/dobot_bringup/msg/RobotStatus")
 {
     ui->setupUi(this);
 
