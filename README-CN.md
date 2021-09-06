@@ -40,12 +40,12 @@ source $HOME/catkin_ws/devel/setup.bash
 # 2. 设置机器人类型
 ### 若为 CR5 机械臂，则使用如下命令设置机械臂类型
 ```
-echo “export DOBOT_TYPE=cr5 >> ~/.bashrc”
+echo "export DOBOT_TYPE=cr5" >> ~/.bashrc
 source ~/.bashrc
 ```
 ### 若为 CR3 机械臂，则使用如下命令设置机械臂类型
 ```
-echo “export DOBOT_TYPE=cr3 >> ~/.bashrc”
+echo "export DOBOT_TYPE=cr3" >> ~/.bashrc
 source ~/.bashrc
 ```
 
