@@ -1,0 +1,20 @@
+{
+  "configurations": [
+    {
+      "browse": {
+        "databaseFilename": "",
+        "limitSymbolsToIncludedHeaders": true
+      },
+      "includePath": [
+        "/home/zhangran/Desktop/ws_cr5robot/devel/include/**",
+        "/opt/ros/melodic/include/**",
+        "/home/zhangran/Desktop/ws_cr5robot/src/cr5robot/cr5control/include/**",
+        "/home/zhangran/Desktop/ws_cr5robot/src/cr5robot/dobot_bringup/include/**",
+        "/home/zhangran/Desktop/magician_go/src/magician_simulation/magician_slam/include/**",
+        "/usr/include/**"
+      ],
+      "name": "ROS"
+    }
+  ],
+  "version": 4
+}

@@ -12,24 +12,24 @@
 #include <string>
 #include <memory>
 #include <ros/ros.h>
-#include <bringup/commander.h>
+#include <dobot_bringup/commander.h>
 #include <actionlib/server/action_server.h>
 #include <control_msgs/FollowJointTrajectoryAction.h>
 
-#include <bringup/MovJ.h>
-#include <bringup/MovL.h>
-#include <bringup/ServoJ.h>
-#include <bringup/MoveJog.h>
-#include <bringup/ServoP.h>
-#include <bringup/RelMovJ.h>
-#include <bringup/RelMovL.h>
-#include <bringup/JointMovJ.h>
-#include <bringup/ResetRobot.h>
-#include <bringup/RobotStatus.h>
+#include <dobot_bringup/MovJ.h>
+#include <dobot_bringup/MovL.h>
+#include <dobot_bringup/ServoJ.h>
+#include <dobot_bringup/MoveJog.h>
+#include <dobot_bringup/ServoP.h>
+#include <dobot_bringup/RelMovJ.h>
+#include <dobot_bringup/RelMovL.h>
+#include <dobot_bringup/JointMovJ.h>
+#include <dobot_bringup/ResetRobot.h>
+#include <dobot_bringup/RobotStatus.h>
 
-#include <bringup/ClearError.h>
-#include <bringup/EnableRobot.h>
-#include <bringup/DisableRobot.h>
+#include <dobot_bringup/ClearError.h>
+#include <dobot_bringup/EnableRobot.h>
+#include <dobot_bringup/DisableRobot.h>
 
 using namespace actionlib;
 using namespace control_msgs;
@@ -91,19 +91,19 @@ public:
     bool isConnected() const;
 
 protected:
-    bool movJ(bringup::MovJ::Request& request, bringup::MovJ::Response& response);
-    bool movL(bringup::MovL::Request& request, bringup::MovL::Response& response);
-    bool servoJ(bringup::ServoJ::Request& request, bringup::ServoJ::Response& response);
-    bool servoP(bringup::ServoP::Request& request, bringup::ServoP::Response& response);
-    bool relMovJ(bringup::RelMovJ::Request& request, bringup::RelMovJ::Response& response);
-    bool relMovL(bringup::RelMovL::Request& request, bringup::RelMovL::Response& response);
-    bool moveJog(bringup::MoveJog::Request& request, bringup::MoveJog::Response& response);
-    bool jointMovJ(bringup::JointMovJ::Request& request, bringup::JointMovJ::Response& response);
+    bool movJ(dobot_bringup::MovJ::Request& request, dobot_bringup::MovJ::Response& response);
+    bool movL(dobot_bringup::MovL::Request& request, dobot_bringup::MovL::Response& response);
+    bool servoJ(dobot_bringup::ServoJ::Request& request, dobot_bringup::ServoJ::Response& response);
+    bool servoP(dobot_bringup::ServoP::Request& request, dobot_bringup::ServoP::Response& response);
+    bool relMovJ(dobot_bringup::RelMovJ::Request& request, dobot_bringup::RelMovJ::Response& response);
+    bool relMovL(dobot_bringup::RelMovL::Request& request, dobot_bringup::RelMovL::Response& response);
+    bool moveJog(dobot_bringup::MoveJog::Request& request, dobot_bringup::MoveJog::Response& response);
+    bool jointMovJ(dobot_bringup::JointMovJ::Request& request, dobot_bringup::JointMovJ::Response& response);
 
-    bool resetRobot(bringup::ResetRobot::Request& request, bringup::ResetRobot::Response& response);
-    bool clearError(bringup::ClearError::Request& request, bringup::ClearError::Response& response);
-    bool enableRobot(bringup::EnableRobot::Request& request, bringup::EnableRobot::Response& response);
-    bool disableRobot(bringup::DisableRobot::Request& request, bringup::DisableRobot::Response& response);
+    bool resetRobot(dobot_bringup::ResetRobot::Request& request, dobot_bringup::ResetRobot::Response& response);
+    bool clearError(dobot_bringup::ClearError::Request& request, dobot_bringup::ClearError::Response& response);
+    bool enableRobot(dobot_bringup::EnableRobot::Request& request, dobot_bringup::EnableRobot::Response& response);
+    bool disableRobot(dobot_bringup::DisableRobot::Request& request, dobot_bringup::DisableRobot::Response& response);
 
 private:
     void feedbackHandle(const ros::TimerEvent& tm,

@@ -19,7 +19,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://cr5_description/meshes/cr5/base_link.dae" />
+        <mesh filename="package://dobot_description/meshes/cr5/base_link.dae" />
       </geometry>
       <material
         name="">
@@ -29,7 +29,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://cr5_description/meshes/cr5/base_link.dae" />
+        <mesh filename="package://dobot_description/meshes/cr5/base_link.dae" />
       </geometry>
     </collision>
   </link>
@@ -55,7 +55,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://cr5_description/meshes/cr5/Link1.dae" />
+        <mesh filename="package://dobot_description/meshes/cr5/Link1.dae" />
       </geometry>
       <material
         name="">
@@ -65,7 +65,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://cr5_description/meshes/cr5/Link1.dae" />
+        <mesh filename="package://dobot_description/meshes/cr5/Link1.dae" />
       </geometry>
     </collision>
   </link>
@@ -93,7 +93,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://cr5_description/meshes/cr5/Link2.dae" />
+        <mesh filename="package://dobot_description/meshes/cr5/Link2.dae" />
       </geometry>
       <material
         name="">
@@ -103,7 +103,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://cr5_description/meshes/cr5/Link2.dae" />
+        <mesh filename="package://dobot_description/meshes/cr5/Link2.dae" />
       </geometry>
     </collision>
   </link>
@@ -131,7 +131,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://cr5_description/meshes/cr5/Link3.dae" />
+        <mesh filename="package://dobot_description/meshes/cr5/Link3.dae" />
       </geometry>
       <material
         name="">
@@ -141,7 +141,7 @@
     <collision>
       <origin xyz="0 0 0"  rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://cr5_description/meshes/cr5/Link3.dae" />
+        <mesh filename="package://dobot_description/meshes/cr5/Link3.dae" />
       </geometry>
     </collision>
   </link>
@@ -169,7 +169,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://cr5_description/meshes/cr5/Link4.dae" />
+        <mesh filename="package://dobot_description/meshes/cr5/Link4.dae" />
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -178,7 +178,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://cr5_description/meshes/cr5/Link4.dae" />
+        <mesh filename="package://dobot_description/meshes/cr5/Link4.dae" />
       </geometry>
     </collision>
   </link>
@@ -206,7 +206,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://cr5_description/meshes/cr5/Link5.dae" />
+        <mesh filename="package://dobot_description/meshes/cr5/Link5.dae" />
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -215,7 +215,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://cr5_description/meshes/cr5/Link5.dae" />
+        <mesh filename="package://dobot_description/meshes/cr5/Link5.dae" />
       </geometry>
     </collision>
   </link>
@@ -243,7 +243,7 @@
     <visual>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://cr5_description/meshes/cr5/Link6.dae" />
+        <mesh filename="package://dobot_description/meshes/cr5/Link6.dae" />
       </geometry>
       <material name="">
         <color rgba="1 1 1 1" />
@@ -252,7 +252,7 @@
     <collision>
       <origin xyz="0 0 0" rpy="0 0 0" />
       <geometry>
-        <mesh filename="package://cr5_description/meshes/cr5/Link6.dae" />
+        <mesh filename="package://dobot_description/meshes/cr5/Link6.dae" />
       </geometry>
     </collision>
   </link>

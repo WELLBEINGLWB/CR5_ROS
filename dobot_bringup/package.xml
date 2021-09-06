@@ -1,6 +1,6 @@
 <?xml version="1.0"?>
 <package format="2">
-    <name>bringup</name>
+    <name>dobot_bringup</name>
     <version>1.0.0</version>
     <description>The cr_bringup package</description>
     <maintainer email="zhangran@dobot.cc">zhangran</maintainer>

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package format="2">
-    <name>rviz_cr5control</name>
+    <name>rviz_dobot_control</name>
     <version>1.0.0</version>
-    <description>The rviz_cr5control package</description>
+    <description>The rviz_dobot_control package</description>
     <maintainer email="zhangran@dobot.cc">zhangran</maintainer>
 
     <license>BSD</license>

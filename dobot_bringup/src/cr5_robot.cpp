@@ -11,7 +11,7 @@
 
 #include <ros/ros.h>
 #include <ros/param.h>
-#include <bringup/cr5_robot.h>
+#include <dobot_bringup/cr5_robot.h>
 
 CR5Robot::CR5Robot(ros::NodeHandle& nh, std::string name)
     : ActionServer<FollowJointTrajectoryAction>(nh, std::move(name), false), goal_{}, control_nh_(nh)
@@ -32,19 +32,19 @@ void CR5Robot::init()
     commander_ = std::make_shared<CR5Commander>(ip);
     commander_->init();
 
-    server_tbl_.push_back(control_nh_.advertiseService("srv/MovJ", &CR5Robot::movJ, this));
-    server_tbl_.push_back(control_nh_.advertiseService("srv/MoveJog", &CR5Robot::moveJog, this));
-    server_tbl_.push_back(control_nh_.advertiseService("srv/MovL", &CR5Robot::movL, this));
-    server_tbl_.push_back(control_nh_.advertiseService("srv/RelMovJ", &CR5Robot::relMovJ, this));
-    server_tbl_.push_back(control_nh_.advertiseService("srv/RelMovL", &CR5Robot::relMovL, this));
-    server_tbl_.push_back(control_nh_.advertiseService("srv/ServoJ", &CR5Robot::servoJ, this));
-    server_tbl_.push_back(control_nh_.advertiseService("srv/ServoP", &CR5Robot::servoP, this));
-    server_tbl_.push_back(control_nh_.advertiseService("srv/JointMovJ", &CR5Robot::jointMovJ, this));
+    server_tbl_.push_back(control_nh_.advertiseService("/dobot_bringup/srv/MovJ", &CR5Robot::movJ, this));
+    server_tbl_.push_back(control_nh_.advertiseService("/dobot_bringup/srv/MoveJog", &CR5Robot::moveJog, this));
+    server_tbl_.push_back(control_nh_.advertiseService("/dobot_bringup/srv/MovL", &CR5Robot::movL, this));
+    server_tbl_.push_back(control_nh_.advertiseService("/dobot_bringup/srv/RelMovJ", &CR5Robot::relMovJ, this));
+    server_tbl_.push_back(control_nh_.advertiseService("/dobot_bringup/srv/RelMovL", &CR5Robot::relMovL, this));
+    server_tbl_.push_back(control_nh_.advertiseService("/dobot_bringup/srv/ServoJ", &CR5Robot::servoJ, this));
+    server_tbl_.push_back(control_nh_.advertiseService("/dobot_bringup/srv/ServoP", &CR5Robot::servoP, this));
+    server_tbl_.push_back(control_nh_.advertiseService("/dobot_bringup/srv/JointMovJ", &CR5Robot::jointMovJ, this));
 
-    server_tbl_.push_back(control_nh_.advertiseService("srv/ClearError", &CR5Robot::clearError, this));
-    server_tbl_.push_back(control_nh_.advertiseService("srv/ResetRobot", &CR5Robot::resetRobot, this));
-    server_tbl_.push_back(control_nh_.advertiseService("srv/DisableRobot", &CR5Robot::disableRobot, this));
-    server_tbl_.push_back(control_nh_.advertiseService("srv/EnableRobot", &CR5Robot::enableRobot, this));
+    server_tbl_.push_back(control_nh_.advertiseService("/dobot_bringup/srv/ClearError", &CR5Robot::clearError, this));
+    server_tbl_.push_back(control_nh_.advertiseService("/dobot_bringup/srv/ResetRobot", &CR5Robot::resetRobot, this));
+    server_tbl_.push_back(control_nh_.advertiseService("/dobot_bringup/srv/DisableRobot", &CR5Robot::disableRobot, this));
+    server_tbl_.push_back(control_nh_.advertiseService("/dobot_bringup/srv/EnableRobot", &CR5Robot::enableRobot, this));
 
     registerGoalCallback(boost::bind(&CR5Robot::goalHandle, this, _1));
     registerCancelCallback(boost::bind(&CR5Robot::cancelHandle, this, _1));
@@ -131,7 +131,7 @@ void CR5Robot::getJointState(double* point)
     commander_->getCurrentJointStatus(point);
 }
 
-bool CR5Robot::clearError(bringup::ClearError::Request& request, bringup::ClearError::Response& response)
+bool CR5Robot::clearError(dobot_bringup::ClearError::Request& request, dobot_bringup::ClearError::Response& response)
 {
     try
     {
@@ -147,7 +147,7 @@ bool CR5Robot::clearError(bringup::ClearError::Request& request, bringup::ClearE
     }
 }
 
-bool CR5Robot::enableRobot(bringup::EnableRobot::Request& request, bringup::EnableRobot::Response& response)
+bool CR5Robot::enableRobot(dobot_bringup::EnableRobot::Request& request, dobot_bringup::EnableRobot::Response& response)
 {
     try
     {
@@ -163,7 +163,7 @@ bool CR5Robot::enableRobot(bringup::EnableRobot::Request& request, bringup::Enab
     }
 }
 
-bool CR5Robot::disableRobot(bringup::DisableRobot::Request& request, bringup::DisableRobot::Response& response)
+bool CR5Robot::disableRobot(dobot_bringup::DisableRobot::Request& request, dobot_bringup::DisableRobot::Response& response)
 {
     try
     {
@@ -194,7 +194,7 @@ void CR5Robot::getToolVectorActual(double* val)
     commander_->getToolVectorActual(val);
 }
 
-bool CR5Robot::movJ(bringup::MovJ::Request& request, bringup::MovJ::Response& response)
+bool CR5Robot::movJ(dobot_bringup::MovJ::Request& request, dobot_bringup::MovJ::Response& response)
 {
     try
     {
@@ -208,7 +208,7 @@ bool CR5Robot::movJ(bringup::MovJ::Request& request, bringup::MovJ::Response& re
     }
 }
 
-bool CR5Robot::movL(bringup::MovL::Request& request, bringup::MovL::Response& response)
+bool CR5Robot::movL(dobot_bringup::MovL::Request& request, dobot_bringup::MovL::Response& response)
 {
     try
     {
@@ -222,7 +222,7 @@ bool CR5Robot::movL(bringup::MovL::Request& request, bringup::MovL::Response& re
     }
 }
 
-bool CR5Robot::servoJ(bringup::ServoJ::Request& request, bringup::ServoJ::Response& response)
+bool CR5Robot::servoJ(dobot_bringup::ServoJ::Request& request, dobot_bringup::ServoJ::Response& response)
 {
     try
     {
@@ -236,7 +236,7 @@ bool CR5Robot::servoJ(bringup::ServoJ::Request& request, bringup::ServoJ::Respon
     }
 }
 
-bool CR5Robot::servoP(bringup::ServoP::Request& request, bringup::ServoP::Response& response)
+bool CR5Robot::servoP(dobot_bringup::ServoP::Request& request, dobot_bringup::ServoP::Response& response)
 {
     try
     {
@@ -250,7 +250,7 @@ bool CR5Robot::servoP(bringup::ServoP::Request& request, bringup::ServoP::Respon
     }
 }
 
-bool CR5Robot::relMovJ(bringup::RelMovJ::Request& request, bringup::RelMovJ::Response& response)
+bool CR5Robot::relMovJ(dobot_bringup::RelMovJ::Request& request, dobot_bringup::RelMovJ::Response& response)
 {
     try
     {
@@ -265,7 +265,7 @@ bool CR5Robot::relMovJ(bringup::RelMovJ::Request& request, bringup::RelMovJ::Res
     }
 }
 
-bool CR5Robot::relMovL(bringup::RelMovL::Request& request, bringup::RelMovL::Response& response)
+bool CR5Robot::relMovL(dobot_bringup::RelMovL::Request& request, dobot_bringup::RelMovL::Response& response)
 {
     try
     {
@@ -279,7 +279,7 @@ bool CR5Robot::relMovL(bringup::RelMovL::Request& request, bringup::RelMovL::Res
     }
 }
 
-bool CR5Robot::jointMovJ(bringup::JointMovJ::Request& request, bringup::JointMovJ::Response& response)
+bool CR5Robot::jointMovJ(dobot_bringup::JointMovJ::Request& request, dobot_bringup::JointMovJ::Response& response)
 {
     try
     {
@@ -293,7 +293,7 @@ bool CR5Robot::jointMovJ(bringup::JointMovJ::Request& request, bringup::JointMov
     }
 }
 
-bool CR5Robot::moveJog(bringup::MoveJog::Request& request, bringup::MoveJog::Response& response)
+bool CR5Robot::moveJog(dobot_bringup::MoveJog::Request& request, dobot_bringup::MoveJog::Response& response)
 {
     try
     {
@@ -308,7 +308,7 @@ bool CR5Robot::moveJog(bringup::MoveJog::Request& request, bringup::MoveJog::Res
     }
 }
 
-bool CR5Robot::resetRobot(bringup::ResetRobot::Request& request, bringup::ResetRobot::Response& response)
+bool CR5Robot::resetRobot(dobot_bringup::ResetRobot::Request& request, dobot_bringup::ResetRobot::Response& response)
 {
     try
     {

@@ -42,7 +42,7 @@ source $HOME/catkin_ws/devel/setup.bash
 1. ## rviz display
 
     ```
-    roslaunch cr5_description display.launch
+    roslaunch dobot_description display.launch
     ```
 
     User can adjust the angle of each joint by joint_state_publisher_gui, and see the result from rviz
@@ -72,14 +72,14 @@ source $HOME/catkin_ws/devel/setup.bash
     roslaunch cr5_moveit cr5_moveit.launch
     ```
 
-* **Install CR5Control Plugin to enable the robotic arm**
+* **Install DobotControl Plugin to enable the robotic arm**
     
     1. Press Panels on the tool bar of rviz --> "Add New Panel"
-    2. Choose CR5Control, then press "OK"
+    2. Choose DobotControl, then press "OK"
     3. Press "EnableRobot" to enable the arm
     4. When "Connected" and "Enable" is displayed on the status bar, it means the robotic arm is connected and enabled, and users can control the robotic arm via Moveit
 
-    ![CR5Control](./cr5control.jpg)
+    ![DobotControl](./cr5control.jpg)
 
 
 # Custom Function Development

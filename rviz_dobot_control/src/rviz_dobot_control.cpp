@@ -9,12 +9,12 @@
  ***********************************************************************************************************************
  */
 
-#include "rviz_cr5control.h"
+#include "rviz_dobot_control.h"
 #include "ui_control_menu.h"
 
-namespace rviz_cr5control
+namespace rviz_dobot_control
 {
-CR5Control::CR5Control(QWidget* parent)
+DobotControl::DobotControl(QWidget* parent)
     : rviz::Panel(parent)
     , is_enable_(false)
     , is_connected_(false)
@@ -31,23 +31,23 @@ CR5Control::CR5Control(QWidget* parent)
     ui->disable_robot_topic->setText(disable_robot_topic_);
     ui->robot_status_topic->setText(robot_status_topic_);
 
-    robot_status_sub_ = nh_.subscribe(robot_status_topic_.toStdString(), 100, &CR5Control::listenRobotStatus, this);
+    robot_status_sub_ = nh_.subscribe(robot_status_topic_.toStdString(), 100, &DobotControl::listenRobotStatus, this);
     enable_robot_client_ =
-        nh_.serviceClient<bringup::EnableRobot>(ui->enable_robot_topic->text().toStdString(), 100);
+        nh_.serviceClient<dobot_bringup::EnableRobot>(ui->enable_robot_topic->text().toStdString(), 100);
     disable_robot_client_ =
-        nh_.serviceClient<bringup::DisableRobot>(ui->disable_robot_topic->text().toStdString(), 100);
+        nh_.serviceClient<dobot_bringup::DisableRobot>(ui->disable_robot_topic->text().toStdString(), 100);
 
-    QObject::connect(ui->enable_robot_btn, &QPushButton::clicked, this, &CR5Control::enableRobot);
-    QObject::connect(ui->disable_robot_btn, &QPushButton::clicked, this, &CR5Control::disableRobot);
+    QObject::connect(ui->enable_robot_btn, &QPushButton::clicked, this, &DobotControl::enableRobot);
+    QObject::connect(ui->disable_robot_btn, &QPushButton::clicked, this, &DobotControl::disableRobot);
     QObject::connect(ui->enable_robot_topic, &QLineEdit::editingFinished, this,
-                     &CR5Control::enableRobotTopicEditFinished);
+                     &DobotControl::enableRobotTopicEditFinished);
     QObject::connect(ui->disable_robot_topic, &QLineEdit::editingFinished, this,
-                     &CR5Control::disableRobotTopicEditFinished);
+                     &DobotControl::disableRobotTopicEditFinished);
     QObject::connect(ui->robot_status_topic, &QLineEdit::editingFinished, this,
-                     &CR5Control::robotStatusTopicEditFinished);
+                     &DobotControl::robotStatusTopicEditFinished);
 }
 
-void CR5Control::load(const Config& config)
+void DobotControl::load(const Config& config)
 {
     QString str;
     if (config.mapGetString(ENABLE_ROBOT_TOPIC_KEY, &str))
@@ -66,21 +66,21 @@ void CR5Control::load(const Config& config)
     }
 }
 
-void CR5Control::listenRobotStatus(const bringup::RobotStatusConstPtr status)
+void DobotControl::listenRobotStatus(const dobot_bringup::RobotStatusConstPtr status)
 {
     setRobotStatus(status->is_enable, status->is_connected);
 }
 
-void CR5Control::save(Config config) const
+void DobotControl::save(Config config) const
 {
     config.mapSetValue(ENABLE_ROBOT_TOPIC_KEY, ui->enable_robot_topic->text());
     config.mapSetValue(DISABLE_ROBOT_TOPIC_KEY, ui->disable_robot_topic->text());
     config.mapSetValue(ROBOT_STATUS_TOPIC_KEY, ui->robot_status_topic->text());
 }
 
-void CR5Control::enableRobot()
+void DobotControl::enableRobot()
 {
-    bringup::EnableRobot srv;
+    dobot_bringup::EnableRobot srv;
     if (enable_robot_client_.call(srv))
     {
         ROS_INFO("enableRobot %d", srv.response.res);
@@ -91,9 +91,9 @@ void CR5Control::enableRobot()
     }
 }
 
-void CR5Control::disableRobot()
+void DobotControl::disableRobot()
 {
-    bringup::DisableRobot srv;
+    dobot_bringup::DisableRobot srv;
     if (disable_robot_client_.call(srv))
     {
         ROS_INFO("disableRobot %d", srv.response.res);
@@ -104,7 +104,7 @@ void CR5Control::disableRobot()
     }
 }
 
-void CR5Control::enableRobotTopicEditFinished()
+void DobotControl::enableRobotTopicEditFinished()
 {
     if (enable_robot_topic_ != ui->enable_robot_topic->text())
     {
@@ -112,7 +112,7 @@ void CR5Control::enableRobotTopicEditFinished()
     }
 }
 
-void CR5Control::disableRobotTopicEditFinished()
+void DobotControl::disableRobotTopicEditFinished()
 {
     if (disable_robot_topic_ != ui->enable_robot_topic->text())
     {
@@ -120,7 +120,7 @@ void CR5Control::disableRobotTopicEditFinished()
     }
 }
 
-void CR5Control::robotStatusTopicEditFinished()
+void DobotControl::robotStatusTopicEditFinished()
 {
     if (robot_status_topic_ != ui->enable_robot_topic->text())
     {
@@ -128,7 +128,7 @@ void CR5Control::robotStatusTopicEditFinished()
     }
 }
 
-void CR5Control::setRobotStatus(bool is_enable, bool is_connected)
+void DobotControl::setRobotStatus(bool is_enable, bool is_connected)
 {
     if (is_enable_ != is_enable)
     {
@@ -142,8 +142,8 @@ void CR5Control::setRobotStatus(bool is_enable, bool is_connected)
         ui->is_robot_connected->setText(is_connected_ ? "Connected" : "Disconnect");
     }
 }
-}    // namespace rviz_cr5control
+}    // namespace rviz_dobot_control
 
 #include <pluginlib/class_list_macros.h>
-PLUGINLIB_EXPORT_CLASS(rviz_cr5control::CR5Control, rviz::Panel)
+PLUGINLIB_EXPORT_CLASS(rviz_dobot_control::DobotControl, rviz::Panel)
 // END_TUTORIAL

@@ -10,9 +10,9 @@
     <buildtool_depend>catkin</buildtool_depend>
 
     <exec_depend>cr5_bringup</exec_depend>
-    <exec_depend>cr5_description</exec_depend>
+    <exec_depend>dobot_description</exec_depend>
     <exec_depend>cr5_moveit</exec_depend>
-    <exec_depend>rviz_cr5control</exec_depend>
+    <exec_depend>rviz_dobot_control</exec_depend>
 
     <export>
         <metapackage/>

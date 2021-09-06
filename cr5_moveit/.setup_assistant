@@ -1,6 +1,6 @@
 moveit_setup_assistant_config:
   URDF:
-    package: cr5_description
+    package: dobot_description
     relative_path: urdf/cr5_robot.urdf
     xacro_args: "--inorder "
   SRDF:

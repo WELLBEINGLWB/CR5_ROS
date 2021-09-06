@@ -13,9 +13,9 @@
 
 #include <ros/ros.h>
 #include <rviz/panel.h>
-#include <bringup/EnableRobot.h>
-#include <bringup/DisableRobot.h>
-#include <bringup/RobotStatus.h>
+#include <dobot_bringup/EnableRobot.h>
+#include <dobot_bringup/DisableRobot.h>
+#include <dobot_bringup/RobotStatus.h>
 
 using namespace rviz;
 
@@ -23,9 +23,9 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class ControlMenu; }
 QT_END_NAMESPACE
 
-namespace rviz_cr5control
+namespace rviz_dobot_control
 {
-class CR5Control : public rviz::Panel
+class DobotControl : public rviz::Panel
 {
     Q_OBJECT
 
@@ -54,7 +54,7 @@ public Q_SLOTS:
     void robotStatusTopicEditFinished();
 
 public:
-    CR5Control(QWidget* parent = nullptr);
+    DobotControl(QWidget* parent = nullptr);
 
     /** @brief Override to load configuration data.  This version loads the name of the panel. */
     virtual void load( const Config& config ) override;
@@ -66,7 +66,7 @@ public:
      * listenRobotStatus
      * @param status robot status
      */
-    void listenRobotStatus(const bringup::RobotStatusConstPtr status);
+    void listenRobotStatus(const dobot_bringup::RobotStatusConstPtr status);
 
 private:
     void setRobotStatus(bool is_enable, bool is_connected);

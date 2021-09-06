@@ -27,7 +27,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://cr5_description/meshes/cr3/base_link.STL" />
+          filename="package://dobot_description/meshes/cr3/base_link.STL" />
       </geometry>
       <material
         name="">
@@ -41,7 +41,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://cr5_description/meshes/cr3/base_link.STL" />
+          filename="package://dobot_description/meshes/cr3/base_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -73,7 +73,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://cr5_description/meshes/cr3/Link1.STL" />
+          filename="package://dobot_description/meshes/cr3/Link1.STL" />
       </geometry>
       <material
         name="">
@@ -87,7 +87,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://cr5_description/meshes/cr3/Link1.STL" />
+          filename="package://dobot_description/meshes/cr3/Link1.STL" />
       </geometry>
     </collision>
   </link>
@@ -131,7 +131,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://cr5_description/meshes/cr3/Link2.STL" />
+          filename="package://dobot_description/meshes/cr3/Link2.STL" />
       </geometry>
       <material
         name="">
@@ -145,7 +145,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://cr5_description/meshes/cr3/Link2.STL" />
+          filename="package://dobot_description/meshes/cr3/Link2.STL" />
       </geometry>
     </collision>
   </link>
@@ -189,7 +189,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://cr5_description/meshes/cr3/Link3.STL" />
+          filename="package://dobot_description/meshes/cr3/Link3.STL" />
       </geometry>
       <material
         name="">
@@ -203,7 +203,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://cr5_description/meshes/cr3/Link3.STL" />
+          filename="package://dobot_description/meshes/cr3/Link3.STL" />
       </geometry>
     </collision>
   </link>
@@ -247,7 +247,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://cr5_description/meshes/cr3/Link4.STL" />
+          filename="package://dobot_description/meshes/cr3/Link4.STL" />
       </geometry>
       <material
         name="">
@@ -261,7 +261,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://cr5_description/meshes/cr3/Link4.STL" />
+          filename="package://dobot_description/meshes/cr3/Link4.STL" />
       </geometry>
     </collision>
   </link>
@@ -305,7 +305,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://cr5_description/meshes/cr3/Link5.STL" />
+          filename="package://dobot_description/meshes/cr3/Link5.STL" />
       </geometry>
       <material
         name="">
@@ -319,7 +319,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://cr5_description/meshes/cr3/Link5.STL" />
+          filename="package://dobot_description/meshes/cr3/Link5.STL" />
       </geometry>
     </collision>
   </link>
@@ -363,7 +363,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://cr5_description/meshes/cr3/Link6.STL" />
+          filename="package://dobot_description/meshes/cr3/Link6.STL" />
       </geometry>
       <material
         name="">
@@ -377,7 +377,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://cr5_description/meshes/cr3/Link6.STL" />
+          filename="package://dobot_description/meshes/cr3/Link6.STL" />
       </geometry>
     </collision>
   </link>

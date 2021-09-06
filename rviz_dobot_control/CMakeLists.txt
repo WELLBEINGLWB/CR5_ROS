@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.0.2)
-project(rviz_cr5control)
+project(rviz_dobot_control)
 
 ## Compile as C++11, supported in ROS Kinetic and newer
 add_compile_options(-std=c++11)
@@ -121,7 +121,7 @@ add_definitions(-DQT_NO_KEYWORDS)
 ## DEPENDS: system dependencies of this project that dependent projects also need
 catkin_package(
         #  INCLUDE_DIRS include
-        #  LIBRARIES rviz_cr5control
+        #  LIBRARIES rviz_dobot_control
         #  CATKIN_DEPENDS roscpp rviz
         #  DEPENDS system_lib
 )
@@ -139,7 +139,7 @@ include_directories(
 
 ## Declare a C++ library
 add_library(${PROJECT_NAME}
-        src/rviz_cr5control.cpp
+        src/rviz_dobot_control.cpp
         )
 
 ## Add cmake target dependencies of the library
