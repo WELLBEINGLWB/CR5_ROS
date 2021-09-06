@@ -10,7 +10,7 @@
   <arg name="robot_ip" doc="IP of the controller" />
   <arg name="robot_port" doc="IP of the controller" default="9001"/>
 
-  <node name="$(arg robot_id)" pkg="cr5_bringup" type="cr5_bringup" output="screen" >
+  <node name="$(arg robot_id)" pkg="dobot_bringup" type="dobot_bringup" output="screen" >
     <param name="joint_publish_rate" type="double" value="10" />
     <param name="robot_ip_address" type="str" value="$(arg robot_ip)"/>
   </node>
