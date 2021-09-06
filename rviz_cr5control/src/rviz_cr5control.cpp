@@ -33,9 +33,9 @@ CR5Control::CR5Control(QWidget* parent)
 
     robot_status_sub_ = nh_.subscribe(robot_status_topic_.toStdString(), 100, &CR5Control::listenRobotStatus, this);
     enable_robot_client_ =
-        nh_.serviceClient<cr5_bringup::EnableRobot>(ui->enable_robot_topic->text().toStdString(), 100);
+        nh_.serviceClient<bringup::EnableRobot>(ui->enable_robot_topic->text().toStdString(), 100);
     disable_robot_client_ =
-        nh_.serviceClient<cr5_bringup::DisableRobot>(ui->disable_robot_topic->text().toStdString(), 100);
+        nh_.serviceClient<bringup::DisableRobot>(ui->disable_robot_topic->text().toStdString(), 100);
 
     QObject::connect(ui->enable_robot_btn, &QPushButton::clicked, this, &CR5Control::enableRobot);
     QObject::connect(ui->disable_robot_btn, &QPushButton::clicked, this, &CR5Control::disableRobot);
@@ -66,7 +66,7 @@ void CR5Control::load(const Config& config)
     }
 }
 
-void CR5Control::listenRobotStatus(const cr5_bringup::RobotStatusConstPtr status)
+void CR5Control::listenRobotStatus(const bringup::RobotStatusConstPtr status)
 {
     setRobotStatus(status->is_enable, status->is_connected);
 }
@@ -80,7 +80,7 @@ void CR5Control::save(Config config) const
 
 void CR5Control::enableRobot()
 {
-    cr5_bringup::EnableRobot srv;
+    bringup::EnableRobot srv;
     if (enable_robot_client_.call(srv))
     {
         ROS_INFO("enableRobot %d", srv.response.res);
@@ -93,7 +93,7 @@ void CR5Control::enableRobot()
 
 void CR5Control::disableRobot()
 {
-    cr5_bringup::DisableRobot srv;
+    bringup::DisableRobot srv;
     if (disable_robot_client_.call(srv))
     {
         ROS_INFO("disableRobot %d", srv.response.res);

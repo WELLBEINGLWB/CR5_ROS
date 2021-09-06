@@ -6,19 +6,21 @@
   <arg name="robot_description" default="robot_description"/>
 
   <!-- Load universal robot description format (URDF) -->
-  <param if="$(arg load_robot_description)" name="$(arg robot_description)" textfile="$(find cr5_description)/urdf/cr5_robot.urdf"/>
+  <param if="$(arg load_robot_description)" name="$(arg robot_description)" textfile="$(find cr5_description)/urdf/cr3_robot.urdf"/>
 
   <!-- The semantic description that corresponds to the URDF -->
-  <param name="$(arg robot_description)_semantic" textfile="$(find cr5_moveit)/config/cr5_robot.srdf" />
+  <param name="$(arg robot_description)_semantic" textfile="$(find cr3_moveit)/config/cr3_robot.srdf" />
 
   <!-- Load updated joint limits (override information from URDF) -->
   <group ns="$(arg robot_description)_planning">
-    <rosparam command="load" file="$(find cr5_moveit)/config/joint_limits.yaml"/>
+    <rosparam command="load" file="$(find cr3_moveit)/config/joint_limits.yaml"/>
+    <rosparam command="load" file="$(find cr3_moveit)/config/cartesian_limits.yaml"/>
   </group>
 
   <!-- Load default settings for kinematics; these settings are overridden by settings in a node's namespace -->
   <group ns="$(arg robot_description)_kinematics">
-    <rosparam command="load" file="$(find cr5_moveit)/config/kinematics.yaml"/>
+    <rosparam command="load" file="$(find cr3_moveit)/config/kinematics.yaml"/>
+
   </group>
 
 </launch>

@@ -1,0 +1,9 @@
+<?xml version="1.0"?>
+<!--
+  Usage:
+    roslaunch cr5_bringup cr5_bringup.launch robot_ip:=<value>
+-->
+<launch>
+  <arg name="DOBOT_TYPE" default="$(env DOBOT_TYPE)" />
+  <include file="$(dirname)/../../$(arg DOBOT_TYPE)_moveit/launch/$(arg DOBOT_TYPE)_moveit.launch"/>
+</launch>

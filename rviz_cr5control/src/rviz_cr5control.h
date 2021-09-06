@@ -13,9 +13,9 @@
 
 #include <ros/ros.h>
 #include <rviz/panel.h>
-#include <cr5_bringup/EnableRobot.h>
-#include <cr5_bringup/DisableRobot.h>
-#include <cr5_bringup/RobotStatus.h>
+#include <bringup/EnableRobot.h>
+#include <bringup/DisableRobot.h>
+#include <bringup/RobotStatus.h>
 
 using namespace rviz;
 
@@ -66,7 +66,7 @@ public:
      * listenRobotStatus
      * @param status robot status
      */
-    void listenRobotStatus(const cr5_bringup::RobotStatusConstPtr status);
+    void listenRobotStatus(const bringup::RobotStatusConstPtr status);
 
 private:
     void setRobotStatus(bool is_enable, bool is_connected);
