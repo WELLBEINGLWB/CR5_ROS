@@ -30,11 +30,11 @@ int main(int argc, char* argv[])
         sensor_msgs::JointState joint_state_msg;
         ros::Publisher joint_state_pub = private_node.advertise<sensor_msgs::JointState>("/joint_states", 100);
         dobot_bringup::RobotStatus robot_status_msg;
-        ros::Publisher robot_status_pub = private_node.advertise<dobot_bringup::RobotStatus>("msg/RobotStatus", 100);
+        ros::Publisher robot_status_pub = private_node.advertise<dobot_bringup::RobotStatus>("/dobot_bringup/msg/RobotStatus", 100);
 
         dobot_bringup::ToolVectorActual tool_vector_actual_msg;
         ros::Publisher tool_vector_pub =
-            private_node.advertise<dobot_bringup::ToolVectorActual>("msg/ToolVectorActual", 100);
+            private_node.advertise<dobot_bringup::ToolVectorActual>("/dobot_bringup/msg/ToolVectorActual", 100);
 
         for (uint32_t i = 0; i < 6; i++)
         {
