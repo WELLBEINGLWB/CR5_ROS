@@ -44,6 +44,7 @@ private:
     uint32_t index_;
     ros::Timer timer_;
     ros::Timer movj_timer_;
+    double trajectory_duration_;
     ros::NodeHandle control_nh_;
     std::shared_ptr<CR5Commander> commander_;
     std::vector<ros::ServiceServer> server_tbl_;

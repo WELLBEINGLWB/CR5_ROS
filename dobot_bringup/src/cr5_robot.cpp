@@ -29,6 +29,9 @@ void CR5Robot::init()
 {
     std::string ip = control_nh_.param<std::string>("robot_ip_address", "192.168.5.1");
 
+    trajectory_duration_ = control_nh_.param("trajectory_duration", 0.3);
+    ROS_INFO("trajectory_duration : %0.2f", trajectory_duration_);
+
     commander_ = std::make_shared<CR5Commander>(ip);
     commander_->init();
 
@@ -113,7 +116,7 @@ void CR5Robot::goalHandle(ActionServer<control_msgs::FollowJointTrajectoryAction
         goal_[i] = handle.getGoal()->trajectory.points[handle.getGoal()->trajectory.points.size() - 1].positions[i];
     }
     timer_ = control_nh_.createTimer(ros::Duration(1.0), boost::bind(&CR5Robot::feedbackHandle, this, _1, handle));
-    movj_timer_ = control_nh_.createTimer(ros::Duration(0.30), boost::bind(&CR5Robot::moveHandle, this, _1, handle));
+    movj_timer_ = control_nh_.createTimer(ros::Duration(trajectory_duration_), boost::bind(&CR5Robot::moveHandle, this, _1, handle));
     timer_.start();
     movj_timer_.start();
     handle.setAccepted();
