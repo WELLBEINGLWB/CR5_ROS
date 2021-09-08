@@ -12,7 +12,7 @@
 
     <build_depend>roscpp</build_depend>
     <build_depend>rviz</build_depend>
-    <build_depend>cr5_bringup</build_depend>
+    <build_depend>dobot_bringup</build_depend>
 
     <exec_depend>rviz</exec_depend>
     <exec_depend>roscpp</exec_depend>
