@@ -10,7 +10,7 @@ add_compile_options(-std=c++11)
 find_package(catkin REQUIRED COMPONENTS
         roscpp
         rviz
-        cr5_bringup
+        dobot_bringup
         )
 
 ## System dependencies are found with CMake's conventions
