@@ -48,6 +48,7 @@ void CR5Robot::init()
     server_tbl_.push_back(control_nh_.advertiseService("/dobot_bringup/srv/ResetRobot", &CR5Robot::resetRobot, this));
     server_tbl_.push_back(control_nh_.advertiseService("/dobot_bringup/srv/DisableRobot", &CR5Robot::disableRobot, this));
     server_tbl_.push_back(control_nh_.advertiseService("/dobot_bringup/srv/EnableRobot", &CR5Robot::enableRobot, this));
+    server_tbl_.push_back(control_nh_.advertiseService("/dobot_bringup/srv/SpeedFactor", &CR5Robot::speedFactor, this));
 
     registerGoalCallback(boost::bind(&CR5Robot::goalHandle, this, _1));
     registerCancelCallback(boost::bind(&CR5Robot::cancelHandle, this, _1));
@@ -316,6 +317,24 @@ bool CR5Robot::resetRobot(dobot_bringup::ResetRobot::Request& request, dobot_bri
     try
     {
         commander_->resetRobot();
+        response.res = 0;
+        return true;
+    }
+    catch (const TcpClientException& err)
+    {
+        ROS_ERROR("%s", err.what());
+        response.res = -1;
+        return false;
+    }
+}
+
+bool CR5Robot::speedFactor(dobot_bringup::SpeedFactor::Request& request, dobot_bringup::SpeedFactor::Response& response)
+{
+    try
+    {
+        char cmd[100];
+        sprintf(cmd, "SpeedFactor(%d)", request.ratio);
+        commander_->dashSendCmd(cmd, strlen(cmd));
         response.res = 0;
         return true;
     }

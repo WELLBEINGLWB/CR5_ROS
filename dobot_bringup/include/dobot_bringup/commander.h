@@ -279,6 +279,16 @@ public:
         real_time_tcp_->tcpSend(cmd, strlen(cmd));
     }
 
+    void dashSendCmd(const char*cmd, uint32_t len)
+    {
+        dash_board_tcp_->tcpSend(cmd, strlen(cmd));
+    }
+
+    void realSendCmd(const char*cmd, uint32_t len)
+    {
+        real_time_tcp_->tcpSend(cmd, strlen(cmd));
+    }
+
 private:
     static inline double rad2Deg(double rad)
     {

@@ -29,6 +29,7 @@
 
 #include <dobot_bringup/ClearError.h>
 #include <dobot_bringup/EnableRobot.h>
+#include <dobot_bringup/SpeedFactor.h>
 #include <dobot_bringup/DisableRobot.h>
 
 using namespace actionlib;
@@ -104,6 +105,7 @@ protected:
     bool resetRobot(dobot_bringup::ResetRobot::Request& request, dobot_bringup::ResetRobot::Response& response);
     bool clearError(dobot_bringup::ClearError::Request& request, dobot_bringup::ClearError::Response& response);
     bool enableRobot(dobot_bringup::EnableRobot::Request& request, dobot_bringup::EnableRobot::Response& response);
+    bool speedFactor(dobot_bringup::SpeedFactor::Request& request, dobot_bringup::SpeedFactor::Response& response);
     bool disableRobot(dobot_bringup::DisableRobot::Request& request, dobot_bringup::DisableRobot::Response& response);
 
 private:
